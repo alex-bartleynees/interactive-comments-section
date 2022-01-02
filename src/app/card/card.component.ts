@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { Subject } from 'rxjs';
+import { Comment } from '../interfaces/comment';
+import { User } from '../interfaces/user';
 
 @Component({
   selector: 'app-card',
@@ -6,10 +9,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
+  @Input() user!: User;
+  @Input() comment!: Comment;
+  @Output() score = new Subject<null>();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  increaseScore() {
+    this.comment.score++;
+    this.score.next(null);
   }
 
+  decreaseScore() {
+    this.comment.score--;
+    this.score.next(null);
+  }
 }

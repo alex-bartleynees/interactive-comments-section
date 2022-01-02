@@ -1,0 +1,7 @@
+<div class="container">
+  <app-card
+    *ngFor="let comment of comments"
+    [comment]="comment"
+    (score)="onScore()"
+  ></app-card>
+</div>

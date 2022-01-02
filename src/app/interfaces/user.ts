@@ -1,4 +1,4 @@
 export interface User {
-  image: string;
+  image: { png: string; webp: string };
   username: string;
 }

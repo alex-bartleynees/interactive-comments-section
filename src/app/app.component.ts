@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import data from '../../data.json';
+import { Comment } from './interfaces/comment';
+import { User } from './interfaces/user';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'interactive-comments-section';
+  comments: Comment[] = data.comments;
+  currentUser: User = data.currentUser;
+  constructor() {}
+
+  onScore() {
+    this.comments.sort((a, b) => b.score - a.score);
+  }
 }

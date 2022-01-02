@@ -1,1 +1,21 @@
-<p>card works!</p>
+<div class="card">
+  <div class="card__score">
+    <span (click)="increaseScore()"><mat-icon>add</mat-icon></span>
+    <p>{{ comment.score }}</p>
+    <span (click)="decreaseScore()"><mat-icon>remove</mat-icon></span>
+  </div>
+  <div class="card__details">
+    <img [src]="comment.user.image.webp" [alt]="comment.user.username" />
+    <h2 class="heading-secondary">{{ comment.user.username }}</h2>
+    <div class="card__details--date">
+      <p>{{ comment.createdAt }}</p>
+    </div>
+    <div class="card__details--reply">
+      <mat-icon>reply</mat-icon>
+      <p class="heading-secondary">Reply</p>
+    </div>
+  </div>
+  <div class="card__content">
+    <p>{{ comment.content }}</p>
+  </div>
+</div>
