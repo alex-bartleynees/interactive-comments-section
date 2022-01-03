@@ -106,4 +106,14 @@
 .replies {
   margin-left: auto;
   width: 90%;
+  position: relative;
+}
+
+.replies::before {
+  content: '';
+  width: 0;
+  height: 100%;
+  position: absolute;
+  left: -7rem;
+  border: 1px solid var(--light-gray);
 }

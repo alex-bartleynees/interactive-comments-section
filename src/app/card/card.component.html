@@ -24,6 +24,5 @@
 </div>
 
 <div class="replies" *ngIf="comment.replies && comment.replies.length > 0">
-  <div class="vertical-line"></div>
   <app-card *ngFor="let reply of comment.replies" [comment]="reply"></app-card>
 </div>
