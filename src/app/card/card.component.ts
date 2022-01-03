@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Comment } from '../interfaces/comment';
+import { Reply } from '../interfaces/reply';
 import { User } from '../interfaces/user';
 
 @Component({
@@ -11,6 +12,7 @@ import { User } from '../interfaces/user';
 export class CardComponent implements OnInit {
   @Input() user!: User;
   @Input() comment!: Comment;
+  @Input() reply?: Reply;
   @Output() score = new Subject<null>();
 
   constructor() {}

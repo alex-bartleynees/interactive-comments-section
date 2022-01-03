@@ -1,5 +1,11 @@
 .container {
   max-width: 100rem;
-  margin: auto;
   margin-top: 5rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
+
+  @media (min-width: 112.5em) {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
