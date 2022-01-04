@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" *ngIf="!isEdit; else editPost">
   <div class="card__score">
     <span (click)="increaseScore()"><mat-icon>add</mat-icon></span>
     <p>{{ comment.score }}</p>
@@ -52,6 +52,14 @@
   <app-card
     *ngFor="let reply of comment.replies"
     [comment]="reply"
-    (delete)="onDelete(reply)"
+    [parentComment]="comment"
   ></app-card>
 </div>
+
+<ng-template #editPost>
+  <app-add-comment
+    [isEdit]="isEdit"
+    [editComment]="comment"
+    (edit)="editComment($event)"
+  ></app-add-comment>
+</ng-template>

@@ -12,7 +12,10 @@ import { Comment } from '../interfaces/comment';
 export class AddCommentComponent implements OnInit {
   @Input() user: User = this.dataService.user;
   @Input() isReply?: boolean;
+  @Input() isEdit?: boolean;
+  @Input() editComment?: Comment;
   @Output() comment = new EventEmitter<string>();
+  @Output() edit = new EventEmitter<string>();
   form: SaveSearchForm = new SaveSearchForm();
   btnText = 'Send';
 
@@ -22,16 +25,29 @@ export class AddCommentComponent implements OnInit {
     if (this.isReply) {
       this.btnText = 'Reply';
     }
+
+    if (this.isEdit && this.editComment) {
+      this.btnText = 'Update';
+      this.form.setValue({ comment: this.editComment.content });
+    }
   }
 
   onSubmit() {
-    const newComment: Comment = {
-      content: this.form.value.comment,
-      createdAt: new Date().toDateString(),
-      score: 0,
-      user: this.dataService.user,
-      replies: []
-    };
-    this.dataService.addComment(newComment);
+    if (this.isReply) {
+      this.comment.emit(this.form.value.comment);
+    } else if (this.isEdit) {
+      this.edit.emit(this.form.value.comment);
+    } else {
+      const newComment: Comment = {
+        id: Math.floor(Math.random() * 100),
+        content: this.form.value.comment,
+        createdAt: new Date().toDateString(),
+        score: 0,
+        user: this.dataService.user,
+        replies: []
+      };
+      this.dataService.addComment(newComment);
+    }
+    this.form.reset();
   }
 }

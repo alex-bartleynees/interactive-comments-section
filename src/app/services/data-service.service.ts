@@ -23,6 +23,10 @@ export class DataServiceService {
     return this.comments;
   }
 
+  getComment(id: number) {
+    return this.comments.filter((item) => item.id === id)[0]
+  }
+
   getcommentsUpdatedListener() {
     return this.commentsUpdated.asObservable();
   }
@@ -35,8 +39,18 @@ export class DataServiceService {
     this.comments.push(newComment);
   }
 
-  deleteComment(comment: Comment | Reply) {
-    this.comments = this.comments.filter((item) => item.id !== comment.id);
+  deleteComment(comment: Comment, parentComment?: Comment) {
+    if (parentComment && parentComment.id) {
+      const singleComment = this.getComment(parentComment.id);
+      singleComment.replies = parentComment.replies?.filter(
+        (item) => item.id !== comment.id
+      );
+
+      const index = this.comments.indexOf(singleComment);
+      this.comments[index] === singleComment;
+    } else {
+      this.comments = this.comments.filter((item) => item.id !== comment.id);
+    }
     this.commentsUpdated.next({ comments: [...this.comments] });
   }
 }
