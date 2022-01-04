@@ -24,7 +24,7 @@ export class DataServiceService {
   }
 
   getComment(id: number) {
-    return this.comments.filter((item) => item.id === id)[0]
+    return this.comments.filter((item) => item.id === id)[0];
   }
 
   getcommentsUpdatedListener() {
@@ -33,10 +33,12 @@ export class DataServiceService {
 
   sortComments() {
     this.comments.sort((a, b) => b.score - a.score);
+    this.commentsUpdated.next({ comments: [...this.comments] });
   }
 
   addComment(newComment: Comment) {
     this.comments.push(newComment);
+    this.commentsUpdated.next({ comments: [...this.comments] });
   }
 
   deleteComment(comment: Comment, parentComment?: Comment) {

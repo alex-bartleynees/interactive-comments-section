@@ -16,6 +16,7 @@ export class CardComponent implements OnInit {
   user: User = data.currentUser;
   isReply = false;
   isEdit = false;
+  isDelete = false;
 
   constructor(private dataService: DataServiceService) {}
 
@@ -67,6 +68,10 @@ export class CardComponent implements OnInit {
   }
 
   onDelete() {
+    this.isDelete = !this.isDelete;
+  }
+
+  deleteComment() {
     this.dataService.deleteComment(this.comment, this.parentComment);
   }
 

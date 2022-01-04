@@ -128,3 +128,50 @@
   left: -8%;
   border: 1px solid var(--light-gray);
 }
+
+.delete__container {
+  background-color: rgba(0, 0, 0, 0.4);
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+}
+
+.delete__modal {
+  background-color: var(--white);
+  border-radius: 10px;
+  padding: 1.5rem;
+  height: 15rem;
+  max-width: 25rem;
+}
+
+.delete__heading {
+  margin-bottom: 1rem;
+}
+
+.delete__message {
+  color: var(--grayish-blue);
+  margin-bottom: 1rem;
+}
+
+.btn {
+  border-radius: 5px;
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+  padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+  text-transform: uppercase;
+}
+
+.btn__cancel {
+  background-color: var(--grayish-blue);
+  margin-right: 1rem;
+}
+
+.btn__delete {
+  background-color: var(--soft-red);
+}
