@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="photo">
+    <img class="user__photo" [src]="user.image.webp" [alt]="user.username" />
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+    <div class="form__group">
+      <label for="comment"></label>
+      <textarea
+        class="form__textarea"
+        name="comment"
+        placeholder="Add a comment..."
+        formControlName="comment"
+      ></textarea>
+    </div>
+    <button class="form__btn" [disabled]="form.invalid">{{ btnText }}</button>
+  </form>
+</div>
