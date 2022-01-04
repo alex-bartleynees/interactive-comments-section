@@ -1,19 +1,20 @@
-import { Component } from '@angular/core';
-import data from '../../data.json';
+import { Component, OnInit } from '@angular/core';
 import { Comment } from './interfaces/comment';
-import { User } from './interfaces/user';
+import { DataServiceService } from './services/data-service.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  comments: Comment[] = data.comments;
-  currentUser: User = data.currentUser;
-  constructor() {}
+export class AppComponent implements OnInit {
+  comments: Comment[] = this.dataService.allComments;
 
-  onScore() {
-    this.comments.sort((a, b) => b.score - a.score);
+  constructor(private dataService: DataServiceService) {}
+
+  ngOnInit(): void {
+    this.dataService.getcommentsUpdatedListener().subscribe((comments) => {
+      this.comments = comments.comments;
+    });
   }
 }

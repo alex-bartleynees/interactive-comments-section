@@ -13,9 +13,28 @@
     </div>
   </div>
 
-  <div class="card__details--reply">
+  <div
+    class="card__details--action"
+    (click)="onReply()"
+    *ngIf="user.username !== comment.user.username"
+  >
     <mat-icon>reply</mat-icon>
     <p class="heading-secondary">Reply</p>
+  </div>
+
+  <div
+    class="card__details--action"
+    *ngIf="user.username === comment.user.username"
+  >
+    <div class="card__details--delete" (click)="onDelete()">
+      <mat-icon>delete</mat-icon>
+      <p class="heading-secondary">Delete</p>
+    </div>
+
+    <div class="card__details--edit" (click)="onEdit()">
+      <mat-icon>edit</mat-icon>
+      <p class="heading-secondary">Edit</p>
+    </div>
   </div>
 
   <div class="card__content">
@@ -23,6 +42,16 @@
   </div>
 </div>
 
+<app-add-comment
+  *ngIf="isReply"
+  [isReply]="isReply"
+  (comment)="addReply($event)"
+></app-add-comment>
+
 <div class="replies" *ngIf="comment.replies && comment.replies.length > 0">
-  <app-card *ngFor="let reply of comment.replies" [comment]="reply"></app-card>
+  <app-card
+    *ngFor="let reply of comment.replies"
+    [comment]="reply"
+    (delete)="onDelete(reply)"
+  ></app-card>
 </div>

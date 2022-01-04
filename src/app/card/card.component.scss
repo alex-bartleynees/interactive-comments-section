@@ -76,9 +76,10 @@
   }
 }
 
-.card__details--reply {
+.card__details--action {
   align-items: center;
   color: var(--moderate-blue);
+  cursor: pointer;
   display: flex;
   gap: 0.5rem;
   grid-row: 1 / 2;
@@ -90,6 +91,16 @@
     grid-column: 2 / 3;
     grid-row: 3 / 4;
   }
+}
+
+.card__details--delete {
+  color: var(--soft-red);
+  margin-right: 0.5rem;
+  display: flex;
+}
+
+.card__details--edit {
+  display: flex;
 }
 
 .card__content {
@@ -114,6 +125,6 @@
   width: 0;
   height: 100%;
   position: absolute;
-  left: -7rem;
+  left: -8%;
   border: 1px solid var(--light-gray);
 }

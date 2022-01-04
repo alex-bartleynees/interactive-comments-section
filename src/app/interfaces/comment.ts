@@ -2,7 +2,7 @@ import { Reply } from './reply';
 import { User } from './user';
 
 export interface Comment {
-  id: number;
+  id?: number;
   content: string;
   createdAt: string;
   score: number;

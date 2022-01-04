@@ -1,11 +1,11 @@
 .container {
-  max-width: 100rem;
+  max-width: 80rem;
   margin-top: 5rem;
-  margin-right: 1rem;
-  margin-left: 1rem;
+  margin-left: auto;
+  margin-right: auto;
 
-  @media (min-width: 112.5em) {
-    margin-left: auto;
-    margin-right: auto;
+  @media (max-width: 75em) {
+    margin-right: 1rem;
+    margin-left: 1rem;
   }
 }
